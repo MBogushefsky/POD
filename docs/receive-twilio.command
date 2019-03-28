@@ -1,0 +1,2 @@
+curl -G https://api.twilio.com/2010-04-01/Accounts/AC9e514a290db6f306f4b481f5b750d6e5/Messages/SM389451e1d6aaace5e2ae73957078a671.json \
+-u AC9e514a290db6f306f4b481f5b750d6e5:304470892a18c3fc28c1bc4736fb2dba

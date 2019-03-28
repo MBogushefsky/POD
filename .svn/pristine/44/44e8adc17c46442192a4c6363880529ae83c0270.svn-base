@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)https://cdn.plaid.com/link/2.0.66/link.html -->
+<html lang="en" dir="ltr" class=" mobile cssanimations csscolumns csscolumns-width csscolumns-span csscolumns-fill csscolumns-gap csscolumns-rule csscolumns-rulecolor csscolumns-rulestyle csscolumns-rulewidth csscolumns-breakbefore csscolumns-breakafter csscolumns-breakinside flexbox generatedcontent cssgradients cssreflections rgba csstransforms supports csstransforms3d csstransitions"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--<base target="_blank">--><base href="." target="_blank">
+
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Add your bank</title>
+<style>.Overlay{opacity:0}.loading-indicator{-webkit-animation:rot 1.2s infinite cubic-bezier(.23,1.2,.32,1);animation:rot 1.2s infinite cubic-bezier(.23,1.2,.32,1);border-bottom:2px solid #e3e3e3;border-left:2px solid #e3e3e3;border-radius:100%;border-right:2px solid #e3e3e3;border-top:2px solid #7e7e7e;font-size:100%;font:inherit;height:45px;left:calc(50% - (45px / 2));margin:0;padding:0;position:absolute;top:40%;vertical-align:baseline;width:45px;box-sizing:border-box}@-webkit-keyframes rot{from{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}@keyframes rot{from{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(359deg);transform:rotate(359deg)}}</style>
+<link rel="stylesheet" type="text/css" href="./Add your bank_files/link.css">
+</head>
+<body>
+<script>window.VERSION="2.0.66",/isMobile\=false/.test(window.location.search)?document.documentElement.className+=" desktop":document.documentElement.className+=" mobile"</script>
+
+<div id="plaid-link-container"><div data-reactroot="" class="App mobile"><div class="Overlay Overlay--is-inactive"><div class="Overlay__content"></div></div><!-- react-empty: 4 --></div></div>
+<script src="./Add your bank_files/vendor.js"></script>
+<script src="./Add your bank_files/link.js"></script>
+
+
+</body></html>
