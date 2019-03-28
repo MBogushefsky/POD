@@ -21,7 +21,7 @@ public class CoinbaseAccountManager {
 		coinbaseClient = new CoinbaseBuilder().build();
 	}
 	
-	public void linkAccount(String apiKey, String apiSecret, int instit) {
+	/*public void linkAccount(String apiKey, String apiSecret, int instit) {
 		switch(instit) {
 		case 1:
 			coinbaseClient = new CoinbaseBuilder().withApiKey(apiKey, apiSecret).build();
@@ -39,7 +39,7 @@ public class CoinbaseAccountManager {
 				}
 			}
 		}
-	}
+	}*/
 	
 	private List<Account> getAccountsFromLink() {
 		List<Account> responseList = null;

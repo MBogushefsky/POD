@@ -62,7 +62,7 @@ public class BankAccountManager {
 		return resultString;
 	}
 
-	public void linkAccount(String user, String pass, int instit) {
+	/*public void linkAccount(String user, String pass, int instit) {
 		String accessToken = "access-development-790eaacd-9e8b-49f6-9eb4-4a063e071139"; //Functions.getAccessToken(instit, user, pass);	TODO NEED TO IMPLEMENT
 		List<Account> responseList = getAccountsFromLink(accessToken);
 		if(responseList != null) {
@@ -70,7 +70,7 @@ public class BankAccountManager {
 				addAccountToDatabase(Main.loggedInUser.getUserId(), instit, acc.getAccountId(), acc.getName(), acc.getBalances().getAvailable(), acc.getBalances().getCurrent(), user, pass, accessToken);
 			}
 		}
-	}
+	}*/
 	
 	private List<Account> getAccountsFromLink(String accessToken) {
 		List<Account> responseList = null;
