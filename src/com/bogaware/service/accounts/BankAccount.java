@@ -3,10 +3,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.bogaware.global.DateManager;
-import com.bogaware.global.Global;
 import com.bogaware.service.accounts.data.BankTransaction;
 import com.bogaware.service.accounts.data.BitcoinTransaction;
 import com.bogaware.service.accounts.data.GenericTransaction;
+import com.bogaware.util.SettingsManager;
 
 public class BankAccount extends GenericAccount {
 	private String username;
@@ -73,6 +73,6 @@ public class BankAccount extends GenericAccount {
 	}
 	
 	public String toString() {
-		return name + ": $" + Global.usdFormat.format(currentBalance);
+		return name + ": $" + SettingsManager.usdFormat.format(currentBalance);
 	}
 }

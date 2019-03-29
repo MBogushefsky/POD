@@ -3,9 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bogaware.global.Functions;
-import com.bogaware.global.Global;
 import com.bogaware.service.accounts.BankAccount;
 import com.bogaware.service.accounts.data.BankTransaction;
+import com.bogaware.util.SettingsManager;
 import com.plaid.client.PlaidClient;
 import com.plaid.client.response.Account;
 import com.plaid.client.response.TransactionsGetResponse.Transaction;

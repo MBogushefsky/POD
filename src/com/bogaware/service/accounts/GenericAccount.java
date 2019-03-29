@@ -2,9 +2,10 @@ package com.bogaware.service.accounts;
 
 import java.util.ArrayList;
 import java.util.Date;
-import com.bogaware.global.Global;
+
 import com.bogaware.service.accounts.data.BankTransaction;
 import com.bogaware.service.accounts.data.GenericTransaction;
+import com.bogaware.util.SettingsManager;
 
 public class GenericAccount {
 	public int owner;
@@ -41,6 +42,6 @@ public class GenericAccount {
 	}
 	
 	public String toString() {
-		return name + ": $" + Global.usdFormat.format(balance);
+		return name + ": $" + SettingsManager.usdFormat.format(balance);
 	}
 }

@@ -1,12 +1,13 @@
 package com.bogaware.plugins;
 
 import org.quartz.JobDataMap;
-import com.bogaware.global.Global;
+
 import com.bogaware.plugins.inventory.AllAccountsStatusPlugin;
 import com.bogaware.plugins.inventory.BitfinexBitcoinPricePlugin;
 import com.bogaware.plugins.inventory.GoodMorningPlugin;
 import com.bogaware.plugins.inventory.QuoteOfTheDayPlugin;
 import com.bogaware.plugins.inventory.WeatherPlugin;
+import com.bogaware.util.SettingsManager;
 
 public class PluginHandler {
 	private Plugin plugin;
@@ -48,7 +49,7 @@ public class PluginHandler {
 				JobDataMap dataMap = new JobDataMap();
 				dataMap.put("PhoneNumber", fromPhoneNumber);
 				dataMap.put("RequestMessage", requestSplit[0]);
-				Global.taskManager.scheduleTask("job", "trigger", frequencyDescription, dataMap);
+				SettingsManager.taskManager.scheduleTask("job", "trigger", frequencyDescription, dataMap);
 				responseMessage = "Task scheduled. ";
 			}
 		}

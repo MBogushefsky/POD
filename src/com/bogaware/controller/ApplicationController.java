@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bogaware.global.BankAccountManager;
 import com.bogaware.global.BankInstitutionManager;
-import com.bogaware.global.Global;
-import com.bogaware.global.PhoneManager;
 import com.bogaware.global.RestManager;
 import com.bogaware.global.UserManager;
+import com.bogaware.messaging.TwilioMessageManager;
 import com.bogaware.plugins.PluginHandler;
 import com.bogaware.service.Application;
+import com.bogaware.service.BankAccountManager;
 import com.bogaware.service.User;
 import com.bogaware.service.accounts.BankAccount;
 import com.bogaware.service.accounts.BankInstitution;
+import com.bogaware.util.SettingsManager;
  
 //http://crunchify.com/simplest-spring-mvc-hello-world-example-tutorial-spring-model-view-controller-tips/
 @Controller
@@ -176,8 +176,8 @@ public class ApplicationController {
 	public String receivedTwilioMessage(@RequestBody String requestString) {
 		/*CommandCenter command = new CommandCenter();
 		return "{ \"message\":\"success: "+messageMap.get("Body")+" plus "+ Functions.getCurrentBalanceFromPhoneNumber("4808885436") +"\"}";*/
-		String textMessage = PhoneManager.getFieldOfTwilioMessage(requestString, "Body");
-		String fromPhoneNumber = PhoneManager.getFieldOfTwilioMessage(requestString, "From");
+		String textMessage = TwilioMessageManager.getFieldOfTwilioMessage(requestString, "Body");
+		String fromPhoneNumber = TwilioMessageManager.getFieldOfTwilioMessage(requestString, "From");
 		//CommandCenter command = new CommandCenter();
 		PluginHandler handler = new PluginHandler(fromPhoneNumber, textMessage);
 		/*PrintWriter pw;

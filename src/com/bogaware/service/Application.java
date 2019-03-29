@@ -4,14 +4,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.bogaware.global.BankAccountManager;
 import com.bogaware.global.DatabaseManager;
-import com.bogaware.global.Global;
 import com.bogaware.service.accounts.BankAccount;
 import com.bogaware.service.accounts.CoinbaseAccount;
 import com.bogaware.service.accounts.PaypalAccount;
 import com.bogaware.service.accounts.data.BankTransaction;
 import com.bogaware.service.accounts.data.BitcoinTransaction;
+import com.bogaware.util.SettingsManager;
 
 public class Application {
 	public static User login(String username, String password) {

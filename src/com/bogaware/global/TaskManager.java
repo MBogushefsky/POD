@@ -9,6 +9,7 @@ import org.quartz.JobExecutionException;
 import org.quartz.Scheduler;
 import org.quartz.impl.StdSchedulerFactory;
 
+import com.bogaware.messaging.TwilioMessageManager;
 import com.bogaware.plugins.PluginHandler;
 
 //https://www.freeformatter.com/cron-expression-generator-quartz.html
@@ -65,7 +66,7 @@ public class TaskManager implements Job{
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		JobDataMap dataMap = context.getJobDetail().getJobDataMap();
 		PluginHandler handler = new PluginHandler((String)dataMap.get("PhoneNumber"), (String)dataMap.get("RequestMessage"));
-		PhoneManager.sendTwilioMessage((String)dataMap.get("PhoneNumber"), handler.getTextResponse());
-		PhoneManager.sendTwilioMessage("+14803133843", handler.getTextResponse());
+		TwilioMessageManager.sendMessageByPhoneNumber((String)dataMap.get("PhoneNumber"), handler.getTextResponse());
+		TwilioMessageManager.sendMessageByPhoneNumber("+14803133843", handler.getTextResponse());
 	}
 }

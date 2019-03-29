@@ -3,14 +3,17 @@ package com.bogaware.controller;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import com.bogaware.global.Global;
+import com.bogaware.messaging.TwilioMessageManager;
+import com.bogaware.util.SettingsManager;
 
 public class ApplicationStartupListener implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent contextEvent) {
 		System.out.println("Context started. ");
-		Global global = new Global();
+		SettingsManager global = new SettingsManager();
+		TwilioMessageManager.sendMessageByPhoneNumber("4808885436", "Hey Derick this is your boss");
+
 	}
 	
 	@Override

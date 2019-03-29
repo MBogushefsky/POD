@@ -10,15 +10,16 @@ import java.util.HashMap;
 
 import com.bogaware.service.Main;
 import com.bogaware.service.User;
+import com.bogaware.util.SettingsManager;
 
 public class DatabaseManager {
-	public static String dbUrl = "jdbc:mysql://" + Global.properties.getProperty("DATABASE_HOST") + ":" + Global.properties.getProperty("DATABASE_PORT") + "/" + Global.properties.getProperty("DATABASE_SCHEMA");
+	public static String dbUrl = "jdbc:mysql://" + SettingsManager.properties.getProperty("DATABASE_HOST") + ":" + SettingsManager.properties.getProperty("DATABASE_PORT") + "/" + SettingsManager.properties.getProperty("DATABASE_SCHEMA");
 	public static Connection conn;
 	
 	public static Connection getDBConnection() {
 		if(conn == null) {
 			try {
-				conn = DriverManager.getConnection(dbUrl, Global.properties.getProperty("DATABASE_USERNAME"), Global.properties.getProperty("DATABASE_PASSWORD"));
+				conn = DriverManager.getConnection(dbUrl, SettingsManager.properties.getProperty("DATABASE_USERNAME"), SettingsManager.properties.getProperty("DATABASE_PASSWORD"));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -33,6 +33,7 @@ import com.bogaware.service.Main;
 import com.bogaware.service.User;
 import com.bogaware.service.accounts.BankAccount;
 import com.bogaware.service.accounts.data.BankTransaction;
+import com.bogaware.util.SettingsManager;
 import com.plaid.client.PlaidClient;
 import com.plaid.client.request.AuthGetRequest;
 import com.plaid.client.request.ItemPublicTokenExchangeRequest;
@@ -47,13 +48,13 @@ import retrofit2.Response;
 
 public class Functions {
 	
-	public static String dbUrl = "jdbc:mysql://" + Global.properties.getProperty("DATABASE_HOST") + ":" + Global.properties.getProperty("DATABASE_PORT") + "/" + Global.properties.getProperty("DATABASE_SCHEMA");
+	public static String dbUrl = "jdbc:mysql://" + SettingsManager.properties.getProperty("DATABASE_HOST") + ":" + SettingsManager.properties.getProperty("DATABASE_PORT") + "/" + SettingsManager.properties.getProperty("DATABASE_SCHEMA");
 	public static Connection conn;
 	
 	public static void connectToDB() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection(dbUrl, Global.properties.getProperty("DATABASE_USERNAME"), Global.properties.getProperty("DATABASE_PASSWORD"));
+			conn = DriverManager.getConnection(dbUrl, SettingsManager.properties.getProperty("DATABASE_USERNAME"), SettingsManager.properties.getProperty("DATABASE_PASSWORD"));
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

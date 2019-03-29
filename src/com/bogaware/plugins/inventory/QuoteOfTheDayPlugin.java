@@ -5,8 +5,9 @@ import org.json.simple.JSONObject;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
-import com.bogaware.global.PhoneManager;
+
 import com.bogaware.global.RestManager;
+import com.bogaware.messaging.TwilioMessageManager;
 import com.bogaware.plugins.Plugin;
 
 public class QuoteOfTheDayPlugin extends Plugin {

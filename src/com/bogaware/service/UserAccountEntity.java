@@ -16,7 +16,8 @@ import org.hibernate.annotations.OptimisticLockType;
 @Table(name = "UserAccount", uniqueConstraints = {
         @UniqueConstraint(columnNames = "ID"),
         @UniqueConstraint(columnNames = "Username"),
-        @UniqueConstraint(columnNames = "Email") })
+        @UniqueConstraint(columnNames = "Email"),
+        @UniqueConstraint(columnNames = "PhoneNumber") })
 public class UserAccountEntity implements Serializable {
 	
 	private static final long serialVersionUID = -1798070786993154676L;
@@ -31,9 +32,18 @@ public class UserAccountEntity implements Serializable {
  
     @Column(name = "Password", unique = false, nullable = false, length = 100)
     private String password;
+    
+    @Column(name = "FirstName", unique = false, nullable = false, length = 100)
+	private String firstName;
+    
+    @Column(name = "LastName", unique = false, nullable = false, length = 100)
+	private String lastName;
 	 
-	@Column(name = "Email", unique = true, nullable = false, length = 100)
+    @Column(name = "Email", unique = true, nullable = false, length = 100)
 	private String email;
+    
+    @Column(name = "PhoneNumber", unique = true, nullable = false, length = 100)
+	private String phoneNumber;
 	
 	public void setUsername(String user) {
 		this.username = user;
@@ -43,8 +53,20 @@ public class UserAccountEntity implements Serializable {
 		this.password = pass;
 	}
 	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
  
     

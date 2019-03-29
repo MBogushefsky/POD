@@ -2,9 +2,9 @@ package com.bogaware.plugins.inventory;
 
 import org.json.simple.JSONObject;
 
-import com.bogaware.global.Global;
 import com.bogaware.global.RestManager;
 import com.bogaware.plugins.Plugin;
+import com.bogaware.util.SettingsManager;
 
 public class CoinbaseAccountBalancePlugin extends Plugin {
 	private String apiAddress = "https://api.coinbase.com/v2/accounts";

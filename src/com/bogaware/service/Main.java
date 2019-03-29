@@ -22,17 +22,16 @@ import org.quartz.SimpleTrigger;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.bogaware.global.BankAccountManager;
 import com.bogaware.global.BankInstitutionManager;
 import com.bogaware.global.CoinbaseAccountManager;
-import com.bogaware.global.Global;
 import com.bogaware.global.Output;
-import com.bogaware.global.PhoneManager;
 import com.bogaware.global.Properties;
 import com.bogaware.global.RestManager;
+import com.bogaware.messaging.TwilioMessageManager;
 import com.bogaware.service.accounts.BankAccount;
 import com.bogaware.service.accounts.BankInstitution;
 import com.bogaware.service.accounts.data.BankTransaction;
+import com.bogaware.util.SettingsManager;
 import com.coinbase.api.Coinbase;
 import com.coinbase.api.CoinbaseBuilder;
 
@@ -50,28 +49,46 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("Starting...");
-		
+
 		BasicConfigurator.configure();
 		List<Logger> loggers = Collections.<Logger>list(LogManager.getCurrentLoggers());
 		loggers.add(LogManager.getRootLogger());
-		for ( Logger logger : loggers ) {
-		    logger.setLevel(Level.OFF);
+		for (Logger logger : loggers) {
+			logger.setLevel(Level.OFF);
 		}
 		
-		Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
- 
-        // Add new Employee object
-        UserAccountEntity user = new UserAccountEntity();
-        user.setUsername("username1");
-        user.setPassword("password1");
-        user.setEmail("demo-user@mail.com");
- 
-        session.save(user);
- 
-        session.getTransaction().commit();
-        HibernateUtil.shutdown();
-        
+		
+		TwilioMessageManager.sendMessageByPhoneNumber("4808885436", "Hey Derick this is your boss");
+		
+		System.out.println("Linking Chase account");
+			
+		
+	
+		/*String inputtedChaseUser = "mbogushefsky8";
+		BankAccountManager bankMgr = new BankAccountManager(inputtedChaseUser, inputtedChasePass, 3);*/
+
+		/*Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		// Add new Employee object
+		UserAccountEntity user = new UserAccountEntity();
+		user.setUsername("mbogushefsky");
+		user.setPassword("password1");
+		user.setFirstName("Mitchell");
+		user.setLastName("Bogushefsky");
+		user.setEmail("mbogushefsky@gmail.com");
+		user.setPhoneNumber("4808885436");
+
+		session.save(user);
+
+		session.getTransaction().commit();
+		HibernateUtil.shutdown();*/
+		
+		
+		
+		
+		
+
 //		Global global = new Global();
 //		
 //		bankAccountTypes.put("checking", 0);

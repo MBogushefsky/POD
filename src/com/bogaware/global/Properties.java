@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.bogaware.service.Application;
 import com.bogaware.service.Main;
+import com.bogaware.util.SettingsManager;
 
 public class Properties {
 	public HashMap<String, String> properties = new HashMap<String, String>();
@@ -40,7 +41,7 @@ public class Properties {
 	public void getAPISettings() {
 		HashMap<String, String> result = new HashMap<String, String>();
 		try {
-			ResultSet rs = DatabaseManager.queryFromDatabase("SELECT * FROM " + Global.properties.getProperty("DATABASE_SCHEMA") + ".settings;");
+			ResultSet rs = DatabaseManager.queryFromDatabase("SELECT * FROM " + SettingsManager.properties.getProperty("DATABASE_SCHEMA") + ".settings;");
 			while (rs.next())
 			{
 				int id = rs.getInt("ID");

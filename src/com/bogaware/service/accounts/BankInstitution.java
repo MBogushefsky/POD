@@ -3,7 +3,7 @@ package com.bogaware.service.accounts;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.bogaware.global.BankAccountManager;
+import com.bogaware.service.BankAccountManager;
 
 public class BankInstitution {
 	private int id;
