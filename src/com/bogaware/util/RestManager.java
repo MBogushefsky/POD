@@ -1,4 +1,4 @@
-package com.bogaware.global;
+package com.bogaware.util;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

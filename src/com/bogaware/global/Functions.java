@@ -48,17 +48,17 @@ import retrofit2.Response;
 
 public class Functions {
 	
-	public static String dbUrl = "jdbc:mysql://" + SettingsManager.properties.getProperty("DATABASE_HOST") + ":" + SettingsManager.properties.getProperty("DATABASE_PORT") + "/" + SettingsManager.properties.getProperty("DATABASE_SCHEMA");
+	//public static String dbUrl = "jdbc:mysql://" + SettingsManager.properties.getProperty("DATABASE_HOST") + ":" + SettingsManager.properties.getProperty("DATABASE_PORT") + "/" + SettingsManager.properties.getProperty("DATABASE_SCHEMA");
 	public static Connection conn;
 	
-	public static void connectToDB() {
+	/*public static void connectToDB() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(dbUrl, SettingsManager.properties.getProperty("DATABASE_USERNAME"), SettingsManager.properties.getProperty("DATABASE_PASSWORD"));
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	public static ResultSet queryFromDatabase(String query) {
 		//System.out.println(query);

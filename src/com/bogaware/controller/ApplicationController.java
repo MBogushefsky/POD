@@ -14,15 +14,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bogaware.global.BankInstitutionManager;
-import com.bogaware.global.RestManager;
 import com.bogaware.global.UserManager;
-import com.bogaware.messaging.TwilioMessageManager;
-import com.bogaware.plugins.PluginHandler;
 import com.bogaware.service.Application;
 import com.bogaware.service.BankAccountManager;
+import com.bogaware.service.CommandService;
 import com.bogaware.service.User;
 import com.bogaware.service.accounts.BankAccount;
 import com.bogaware.service.accounts.BankInstitution;
+import com.bogaware.twilio.MessageHandler;
+import com.bogaware.twilio.TwilioMessageManager;
+import com.bogaware.util.RestManager;
 import com.bogaware.util.SettingsManager;
  
 //http://crunchify.com/simplest-spring-mvc-hello-world-example-tutorial-spring-model-view-controller-tips/
@@ -54,7 +55,15 @@ public class ApplicationController {
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/call/login", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/command", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	public String postCommand(@RequestBody String requestString) {
+		JSONObject requestJson = RestManager.stringToJson(requestString);
+		return CommandService.executeCommand((String) requestJson.get("command"));
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/core/login", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	public String login(@RequestBody String requestString) {
 		JSONObject requestJson = RestManager.stringToJson(requestString);
@@ -178,8 +187,9 @@ public class ApplicationController {
 		return "{ \"message\":\"success: "+messageMap.get("Body")+" plus "+ Functions.getCurrentBalanceFromPhoneNumber("4808885436") +"\"}";*/
 		String textMessage = TwilioMessageManager.getFieldOfTwilioMessage(requestString, "Body");
 		String fromPhoneNumber = TwilioMessageManager.getFieldOfTwilioMessage(requestString, "From");
+		TwilioMessageManager.sendMessageByPhoneNumber("4808885436", textMessage);
 		//CommandCenter command = new CommandCenter();
-		PluginHandler handler = new PluginHandler(fromPhoneNumber, textMessage);
+		MessageHandler handler = new MessageHandler(fromPhoneNumber, textMessage);
 		/*PrintWriter pw;
 		try {
 			pw = new PrintWriter(new File("output.txt"));

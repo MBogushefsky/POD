@@ -1,5 +1,11 @@
 package com.bogaware.service;
 
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -11,6 +17,8 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.json.simple.JSONObject;
 import org.quartz.CronTrigger;
@@ -22,18 +30,23 @@ import org.quartz.SimpleTrigger;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import com.bogaware.entities.TaskEntity;
 import com.bogaware.global.BankInstitutionManager;
 import com.bogaware.global.CoinbaseAccountManager;
 import com.bogaware.global.Output;
 import com.bogaware.global.Properties;
-import com.bogaware.global.RestManager;
-import com.bogaware.messaging.TwilioMessageManager;
+import com.bogaware.plaid.PlaidService;
 import com.bogaware.service.accounts.BankAccount;
 import com.bogaware.service.accounts.BankInstitution;
 import com.bogaware.service.accounts.data.BankTransaction;
+import com.bogaware.service.accounts.data.BankTransaction_OLD;
+import com.bogaware.twilio.TwilioMessageManager;
+import com.bogaware.util.RestManager;
 import com.bogaware.util.SettingsManager;
 import com.coinbase.api.Coinbase;
 import com.coinbase.api.CoinbaseBuilder;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 
 public class Main {
 
@@ -50,20 +63,59 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("Starting...");
 
-		BasicConfigurator.configure();
+		/*BasicConfigurator.configure();
 		List<Logger> loggers = Collections.<Logger>list(LogManager.getCurrentLoggers());
 		loggers.add(LogManager.getRootLogger());
 		for (Logger logger : loggers) {
 			logger.setLevel(Level.OFF);
 		}
 		
+		//PlaidService plaid = new PlaidService(3, "mbogushefsky8", "");
 		
-		TwilioMessageManager.sendMessageByPhoneNumber("4808885436", "Hey Derick this is your boss");
-		
-		System.out.println("Linking Chase account");
+		ArrayList<BankTransaction> bankTransactions = new ArrayList<BankTransaction>();
+	    try {
+	    	Reader reader = Files.newBufferedReader(Paths.get("resources/Chase1672_Activity_20190331.CSV"));
+	        CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
+		    String[] nextRecord;
+			while ((nextRecord = csvReader.readNext()) != null) {
+				BankTransaction transaction = new BankTransaction();
+				transaction.setDetails(nextRecord[0]);
+				transaction.setPostingDate(new SimpleDateFormat("MM/dd/yyyy").parse(nextRecord[1]));
+				transaction.setDescription(nextRecord[2]);
+				transaction.setAmount(Double.parseDouble(nextRecord[3]));
+				transaction.setType(nextRecord[4]);
+				transaction.setBalance(Double.parseDouble(nextRecord[5]));
+				bankTransactions.add(transaction);
+			}
 			
+		} catch (IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    double netAmount = 0;
+	    for(int i = 0; i < 40; i++) {
+	    	netAmount += bankTransactions.get(i).getAmount();
+	    	System.out.println(bankTransactions.get(i).getPostingDate());
+	    }
+	    System.out.println(netAmount);*/
+	    
 		
-	
+		//TwilioMessageManager.sendMessageByPhoneNumber("4808885436", "Hey Derick this is your boss");
+		//Session session = HibernateUtil.getSessionFactory().openSession();
+		//Query query = session.createQuery("from tasks");
+		
+		/*String sql = "SELECT * FROM TASKS";
+		SQLQuery query = session.createSQLQuery(sql);
+		query.addEntity(TaskEntity.class);
+		//query.setParameter("employee_id", 3);
+		List<TaskEntity> results = query.list();
+		System.out.println(results.get(0).getUserId());*/
+		
+		PlaidService plaidService = new PlaidService();
+		System.out.println(plaidService.getAccounts().get(0).getBalances().getAvailable());
+		
+		
 		/*String inputtedChaseUser = "mbogushefsky8";
 		BankAccountManager bankMgr = new BankAccountManager(inputtedChaseUser, inputtedChasePass, 3);*/
 
@@ -83,10 +135,6 @@ public class Main {
 
 		session.getTransaction().commit();
 		HibernateUtil.shutdown();*/
-		
-		
-		
-		
 		
 
 //		Global global = new Global();

@@ -1,6 +1,4 @@
-package com.bogaware.plugins.inventory;
-
-import com.bogaware.plugins.Plugin;
+package com.bogaware.plugins;
 
 public class GoodMorningPlugin extends Plugin {
 	

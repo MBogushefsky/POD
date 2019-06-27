@@ -8,12 +8,12 @@ import com.plaid.client.response.TransactionsGetResponse.Transaction.Location;
 import com.plaid.client.response.TransactionsGetResponse.Transaction.PaymentMeta;
 
 
-public class BankTransaction extends GenericTransaction {
+public class BankTransaction_OLD extends GenericTransaction {
 	private BankTransactionPaymentMeta paymentMeta;
 	private BankTransactionLocation location; 
 	private List<String> categories = new ArrayList<String>();
 	
-	public BankTransaction(String transId, String accId, double amt, String dt, String transName, PaymentMeta transPaymentMeta, Location transLocation, List<String> cate) {
+	public BankTransaction_OLD(String transId, String accId, double amt, String dt, String transName, PaymentMeta transPaymentMeta, Location transLocation, List<String> cate) {
 		id = transId;
 		fromAccountId = accId;
 		amount = amt;

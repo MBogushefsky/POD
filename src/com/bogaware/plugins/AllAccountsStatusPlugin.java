@@ -1,8 +1,7 @@
-package com.bogaware.plugins.inventory;
+package com.bogaware.plugins;
 
 import java.util.ArrayList;
 
-import com.bogaware.plugins.Plugin;
 import com.bogaware.service.Application;
 import com.bogaware.service.User;
 import com.bogaware.service.accounts.BankAccount;

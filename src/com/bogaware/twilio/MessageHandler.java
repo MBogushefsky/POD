@@ -1,42 +1,58 @@
-package com.bogaware.plugins;
+package com.bogaware.twilio;
 
 import org.quartz.JobDataMap;
 
-import com.bogaware.plugins.inventory.AllAccountsStatusPlugin;
-import com.bogaware.plugins.inventory.BitfinexBitcoinPricePlugin;
-import com.bogaware.plugins.inventory.GoodMorningPlugin;
-import com.bogaware.plugins.inventory.QuoteOfTheDayPlugin;
-import com.bogaware.plugins.inventory.WeatherPlugin;
+import com.bogaware.plugins.AccountBalancesPlugin;
+import com.bogaware.plugins.AllAccountsStatusPlugin;
+import com.bogaware.plugins.BitfinexBitcoinPricePlugin;
+import com.bogaware.plugins.GoodMorningPlugin;
+import com.bogaware.plugins.HealthyMessagePlugin;
+import com.bogaware.plugins.HelpPlugin;
+import com.bogaware.plugins.LastDaysSpendingPlugin;
+import com.bogaware.plugins.Plugin;
+import com.bogaware.plugins.QuoteOfTheDayPlugin;
+import com.bogaware.plugins.WeatherPlugin;
 import com.bogaware.util.SettingsManager;
 
-public class PluginHandler {
+public class MessageHandler {
 	private Plugin plugin;
 	private String fromPhoneNumber = "";
 	private String requestMessage = "";
 	private String responseMessage = "";
 	private String frequencyDescription = "";
 	
-	public PluginHandler(String fromPhoneNumberInput, String requestText) {
-		this.fromPhoneNumber = fromPhoneNumberInput;
+	public MessageHandler(String fromPhoneNumber, String requestText) {
+		this.fromPhoneNumber = fromPhoneNumber;
 		this.requestMessage = requestText.toLowerCase();
 		getPlugin();
 		checkForAlert();
 	}
 	
 	public void getPlugin() {
-		if(requestMessage.startsWith("qotd")) {
+		if(requestMessage.equalsIgnoreCase("h")) {
+			plugin = new HelpPlugin(requestMessage);
+		} else if(requestMessage.startsWith("qotd")) {
 			plugin = new QuoteOfTheDayPlugin(requestMessage);
-		} else if(requestMessage.startsWith("gma")){
+		} else if(requestMessage.startsWith("gm")){
 			plugin = new GoodMorningPlugin(requestMessage);
 			frequencyDescription = "dailyAt8";
+		} else if(requestMessage.startsWith("hm")){
+			plugin = new HealthyMessagePlugin(requestMessage);
+			frequencyDescription = "dailyAt11";
 		} else if(requestMessage.startsWith("bp")){
 			plugin = new BitfinexBitcoinPricePlugin(requestMessage);
-		} else if(requestMessage.startsWith("tmp")){
+		} else if(requestMessage.startsWith("lds")) {
+			plugin = new LastDaysSpendingPlugin(requestMessage);
+		} else if(requestMessage.startsWith("ab")) {
+			plugin = new AccountBalancesPlugin(requestMessage);
+		}
+		/*else if(requestMessage.startsWith("tmp")){
 			plugin = new WeatherPlugin(requestMessage);
 		} else if(requestMessage.startsWith("bs")){
 			plugin = new AllAccountsStatusPlugin(fromPhoneNumber, requestMessage);
 			frequencyDescription = "dailyAt20";
-		} else {
+		}*/ 
+		else {
 			plugin = new Plugin(requestMessage);
 		}
 		this.responseMessage = plugin.getResponse();

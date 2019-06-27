@@ -9,8 +9,8 @@ import org.quartz.JobExecutionException;
 import org.quartz.Scheduler;
 import org.quartz.impl.StdSchedulerFactory;
 
-import com.bogaware.messaging.TwilioMessageManager;
-import com.bogaware.plugins.PluginHandler;
+import com.bogaware.twilio.MessageHandler;
+import com.bogaware.twilio.TwilioMessageManager;
 
 //https://www.freeformatter.com/cron-expression-generator-quartz.html
 //https://www.worldtimebuddy.com/united-states-arizona-phoenix-to-utc
@@ -18,10 +18,10 @@ public class TaskManager implements Job{
 	private Scheduler scheduler;
 	private String[][] cronExpressions = new String[][] {
 		{"dailyAt8", "0 0 15 ? * * *"},
+		{"dailyAt11", "	0 0 18 1/1 * ? *"},
 		{"dailyAt12", "0 0 19 ? * * *"},
 		{"dailyAt16", "0 0 23 ? * * *"},
-		{"dailyAt20", "0 0 3 ? * * *"},
-		{"dailyEach4", }
+		{"dailyAt20", "41 22 * * *"}
 	};
 
 	public TaskManager() {
@@ -65,8 +65,7 @@ public class TaskManager implements Job{
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		JobDataMap dataMap = context.getJobDetail().getJobDataMap();
-		PluginHandler handler = new PluginHandler((String)dataMap.get("PhoneNumber"), (String)dataMap.get("RequestMessage"));
+		MessageHandler handler = new MessageHandler((String)dataMap.get("PhoneNumber"), (String)dataMap.get("RequestMessage"));
 		TwilioMessageManager.sendMessageByPhoneNumber((String)dataMap.get("PhoneNumber"), handler.getTextResponse());
-		TwilioMessageManager.sendMessageByPhoneNumber("+14803133843", handler.getTextResponse());
 	}
 }

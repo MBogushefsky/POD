@@ -8,7 +8,7 @@ import com.bogaware.global.DatabaseManager;
 import com.bogaware.service.accounts.BankAccount;
 import com.bogaware.service.accounts.CoinbaseAccount;
 import com.bogaware.service.accounts.PaypalAccount;
-import com.bogaware.service.accounts.data.BankTransaction;
+import com.bogaware.service.accounts.data.BankTransaction_OLD;
 import com.bogaware.service.accounts.data.BitcoinTransaction;
 import com.bogaware.util.SettingsManager;
 
@@ -115,14 +115,14 @@ public class Application {
 		return result;
 	}
 	
-	private static ArrayList<BankTransaction> getTransactionsFromBankAccount(String accoundId) {
-		ArrayList<BankTransaction> result = new ArrayList<BankTransaction>();
+	private static ArrayList<BankTransaction_OLD> getTransactionsFromBankAccount(String accoundId) {
+		ArrayList<BankTransaction_OLD> result = new ArrayList<BankTransaction_OLD>();
 		try {
 			ResultSet rs = DatabaseManager.queryFromDatabase("SELECT * FROM banktransactions WHERE ACCOUNT_ID=\'" + accoundId + "\' ORDER BY APPLIED_DATE DESC;");
 			while (rs.next())
 			{
 				int id = rs.getInt("ID");
-				BankTransaction tempTrans = new BankTransaction(rs.getString("TRANSACTION_ID"), rs.getString("ACCOUNT_ID"), rs.getDouble("AMOUNT"), rs.getString("APPLIED_DATE"), rs.getString("NAME"), null, null, null);
+				BankTransaction_OLD tempTrans = new BankTransaction_OLD(rs.getString("TRANSACTION_ID"), rs.getString("ACCOUNT_ID"), rs.getDouble("AMOUNT"), rs.getString("APPLIED_DATE"), rs.getString("NAME"), null, null, null);
 				result.add(tempTrans);
 			}
 		} catch (Exception e) {

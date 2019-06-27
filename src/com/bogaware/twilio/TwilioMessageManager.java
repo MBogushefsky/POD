@@ -1,10 +1,10 @@
-package com.bogaware.messaging;
+package com.bogaware.twilio;
 
 import java.util.HashMap;
 
-import com.bogaware.global.RestManager;
 import com.bogaware.service.Main;
 import com.bogaware.util.Base64Manager;
+import com.bogaware.util.RestManager;
 import com.bogaware.util.SettingsManager;
 import com.bogaware.util.URLManager;
 

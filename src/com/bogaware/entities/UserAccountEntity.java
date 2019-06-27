@@ -1,4 +1,4 @@
-package com.bogaware.service;
+package com.bogaware.entities;
 import java.io.Serializable;
 
 import javax.persistence.Column;

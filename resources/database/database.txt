@@ -1,0 +1,25 @@
+CREATE DATABASE gadget;
+USE gadget;
+CREATE TABLE UserAccounts (
+    ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	Username VARCHAR(255) NOT NULL UNIQUE,
+	Password VARCHAR(255) NOT NULL,
+	FirstName VARCHAR(255) NOT NULL,
+	LastName VARCHAR(255) NOT NULL,
+	Email VARCHAR(255) NOT NULL UNIQUE,
+	PhoneNumber VARCHAR(255) NOT NULL UNIQUE
+);
+CREATE TABLE Tasks (
+    ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	UserId INT(6) NOT NULL,
+    JobType INT(6) NOT NULL,
+    TimeInterval VARCHAR(255) NOT NULL
+);
+CREATE TABLE JobTypes (
+    ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	Name VARCHAR(255) NOT NULL UNIQUE,
+	Description VARCHAR(255) NOT NULL
+);
+INSERT INTO `gadget`.`useraccounts` (`ID`, `Username`, `Password`, `FirstName`, `LastName`, `Email`, `PhoneNumber`) VALUES ('1', 'mbogushefsky', 'xboxlive', 'Mitchell', 'Bogushefsky', 'mbogushefsky@gmail.com', '4808885436');
+INSERT INTO `gadget`.`tasks` (`ID`, `UserId`, `JobType`, `TimeInterval`) VALUES ('1', '1', '1', '0 0 12 1/1 * ? *');
+INSERT INTO `gadget`.`jobtypes` (`ID`, `Name`, `Description`) VALUES ('1', 'QOTD', 'Quote of the Day');

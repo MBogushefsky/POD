@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.bogaware.global.Functions;
 import com.bogaware.service.accounts.BankAccount;
-import com.bogaware.service.accounts.data.BankTransaction;
+import com.bogaware.service.accounts.data.BankTransaction_OLD;
 import com.bogaware.util.SettingsManager;
 import com.plaid.client.PlaidClient;
 import com.plaid.client.response.Account;
@@ -43,13 +43,13 @@ public class CommandCenter {
 		return result;
 	}
 	
-	public ArrayList<BankTransaction> getAllTransactions(){
+	public ArrayList<BankTransaction_OLD> getAllTransactions(){
 		//return getTransactionsByAccounts(Main.accounts);
 		return null;
 	}
 	
-	public ArrayList<BankTransaction> transactionsToBankTransactions(List<Transaction> transactions){
-		ArrayList<BankTransaction> result = new ArrayList<BankTransaction>();
+	public ArrayList<BankTransaction_OLD> transactionsToBankTransactions(List<Transaction> transactions){
+		ArrayList<BankTransaction_OLD> result = new ArrayList<BankTransaction_OLD>();
 		/*int count = 0;
 		for(Transaction trans : transactions){
 			BankTransaction tempAccount = new BankTransaction(trans.getAccountId(), trans.getAmount(), trans.getDate(), trans.getName(), trans.getPaymentMeta(), trans.getLocation(), trans.getCategory());

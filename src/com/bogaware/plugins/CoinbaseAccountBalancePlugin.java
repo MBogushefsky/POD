@@ -1,9 +1,8 @@
-package com.bogaware.plugins.inventory;
+package com.bogaware.plugins;
 
 import org.json.simple.JSONObject;
 
-import com.bogaware.global.RestManager;
-import com.bogaware.plugins.Plugin;
+import com.bogaware.util.RestManager;
 import com.bogaware.util.SettingsManager;
 
 public class CoinbaseAccountBalancePlugin extends Plugin {

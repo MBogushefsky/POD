@@ -1,4 +1,4 @@
-package com.bogaware.plugins.inventory;
+package com.bogaware.plugins;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -6,9 +6,8 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-import com.bogaware.global.RestManager;
-import com.bogaware.messaging.TwilioMessageManager;
-import com.bogaware.plugins.Plugin;
+import com.bogaware.twilio.TwilioMessageManager;
+import com.bogaware.util.RestManager;
 
 public class QuoteOfTheDayPlugin extends Plugin {
 	private String apiAddress = "http://quotes.rest/qod.json";

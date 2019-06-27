@@ -3,7 +3,7 @@ package com.bogaware.service.accounts;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.bogaware.service.accounts.data.BankTransaction;
+import com.bogaware.service.accounts.data.BankTransaction_OLD;
 import com.bogaware.service.accounts.data.GenericTransaction;
 import com.bogaware.util.SettingsManager;
 

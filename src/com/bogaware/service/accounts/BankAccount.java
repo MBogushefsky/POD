@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.bogaware.global.DateManager;
-import com.bogaware.service.accounts.data.BankTransaction;
+import com.bogaware.service.accounts.data.BankTransaction_OLD;
 import com.bogaware.service.accounts.data.BitcoinTransaction;
 import com.bogaware.service.accounts.data.GenericTransaction;
 import com.bogaware.util.SettingsManager;
@@ -60,9 +60,9 @@ public class BankAccount extends GenericAccount {
 		return transactions;
 	}
 	
-	public void setAllTransactions(ArrayList<BankTransaction> bankTrans) {
+	public void setAllTransactions(ArrayList<BankTransaction_OLD> bankTrans) {
 		ArrayList<GenericTransaction> result = new ArrayList<GenericTransaction>();
-		for(BankTransaction trans : bankTrans) {
+		for(BankTransaction_OLD trans : bankTrans) {
 			result.add(trans);
 		}
 		transactions = result;
